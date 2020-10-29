@@ -4,8 +4,6 @@
 语法输出：
   npm run dev
   npm run build
-
-
 ```
 
 
@@ -13,16 +11,15 @@ cross插件设置
 `cross-env NODE_ENV=development`
 
 
-# 工程目录说明
+# 工程目录说明 src/
 |目录名|描述|
 |:------:|:----------:|
 |./webpackServerConfig|webpack的基础配置在这里|
-|./beService|后端服务目录，服务整个工程的后端脚本|
 |./public|通用脚本或第三方插件|
-|./vueConfig|webpack工程中，vue相关的配置目录|
-|./client/`styles`|前端通用样式目录，可以存放通用样式，第三方样式库|
-|./client/`routers`|路由模块目录|
-|./client/`pages`|spa页面入口|
+|./webpackPlugins|webpack工程插件开发目录|
+|./src/assets/`styles`|前端通用样式目录，可以存放通用样式，第三方样式库|
+|./src/`common`|common公共脚本|
+|./src/`pages`|spa页面入口|
 
 `pages`
 
@@ -30,11 +27,12 @@ cross插件设置
 |:------:|:----------:|
 |./home|系统首页|
 
-`routers`
+`common`
 
 |目录名|描述|
 |:------:|:----------:|
-|./index.js|用于vue项目中前端路由管控配置|
+|library/|三方代码库|
+|utils/|公共类方法|
 
 `styles`
 
