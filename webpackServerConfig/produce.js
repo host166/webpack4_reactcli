@@ -75,6 +75,7 @@ const produceConfig = merge(baseConfig, {
         cacheGroups: {
           vendor: {
             name: "vendor",
+            minChunks: 2, // 引入两次及以上被打包
             test: /[\\/]node_modules[\\/]/, //打包第三方库
             chunks: "all",
             priority: -10 // 优先级

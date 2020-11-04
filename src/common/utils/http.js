@@ -10,21 +10,20 @@ import _ from 'lodash';
 // fetch 兼容ie
 import isomorphicFetch from 'isomorphic-fetch';
 import esPromise from 'es6-promise';
-
 esPromise.polyfill();
 
 /**
  * @method
+ * @param {object} url 请求地址
  * @param {object} args
  * 入参 例： 对照参数options
  * {
  *     url: '/miflightapi/json/touch/searchHotCity.html',
  *     args: {method: 'GET'},
  * }
- * @return {arraybuffer|blob|document|json|text|stream} iresponseType: 'json'配置
- * @desc axios方式请求接口
+ * @returns {arraybuffer|blob|document|json|text|stream} iresponseType: 'json'配置
  **/
-export function cdFetch(url = '', args = {}) {
+export function request(url = '', args = {}) {
   let opts = {
     method: 'GET',
     body: {},
@@ -40,26 +39,16 @@ export function cdFetch(url = '', args = {}) {
     mode: 'no-cors',
     isFormData: false,
     catchMessage: false // catch时开启提示
-  };
+  }
   for (let x in args) {
     opts[x] = args[x];
-  };
+  }
   // 设置header
   if (Boolean(args['options'])) {
     for (let i in args['options']) {
       opts.options[i] = args['options'][i];
     };
-  };
-
-  // const isFormData = Object.prototype.toString.call(opts.body) === '[object FormData]';
-
-  // // 修改 Content-type
-  // if (isFormData) {
-  //   const headers = opts.options.headers
-  //   opts.options.headers = Object.assign(headers, {
-  //     'Content-type': 'application/x-www-form-urlencoded',
-  //   })
-  // }
+  }
 
   let method = opts.method.toLocaleUpperCase();
   let isEmpty_qs = _.isEmpty(opts.querystring);
@@ -73,15 +62,15 @@ export function cdFetch(url = '', args = {}) {
   }
   if (method === 'POST' || method === 'PUT') {
     if (!isEmpty_qs) {
-      fetchUrl += `?${qs.stringify(opts.querystring)}`; // `${!isEmpty_qs ? '?' + qs.stringify(opts.querystring) : ''}`
+      // `${!isEmpty_qs ? '?' + qs.stringify(opts.querystring) : ''}`
+      fetchUrl += `?${qs.stringify(opts.querystring)}`; 
     }
-
     if (opts.isFormData) {
       opts.options['body'] = opts['body'];
-      const headers = opts.options.headers
+      const headers = opts.options.headers;
       opts.options.headers = Object.assign(headers, {
         'Content-type': 'application/x-www-form-urlencoded',
-      })
+      });
     }else if (!isEmpty_body) {
       opts.options['body'] = opts.isFormData?opts['body']:JSON.stringify(opts['body'] || {});
     }
@@ -92,7 +81,6 @@ export function cdFetch(url = '', args = {}) {
 
     _fetch(fetchUrl, opts.options)
       .then(resp => {
-
         if (resp.status >= 500) {
           return reject(resp);
         }
@@ -116,18 +104,17 @@ export function cdFetch(url = '', args = {}) {
         //   return resolve(data.Message);
         // }
 
-        if (data.IsLogin === false) {
-          console.log('请登陆');
-        }
+        // if (data.IsLogin === false) {
+        //   console.log('请登陆');
+        // }
 
         return resolve(data);
       })
       .catch(e => {
-        if (opts.catchMessage) {
-          console.log('请求发生异常，请重试。');
-        }
+        // if (opts.catchMessage) {
+        //   console.error('请求发生异常，请重试。');
+        // };
         return reject(e);
       });
-
   });
 }
