@@ -49,6 +49,7 @@ section,figure,figcaption{display:block;}
 
 .pointEvent{pointer-events:none;}
 .nostyle{font-weight:normal;font-style:normal;}
+.wsn{ white-space: nowrap;}
 
 .bgf{background-color:#fff;}
 
@@ -69,6 +70,7 @@ section,figure,figcaption{display:block;}
 .incWrap{height:auto;overflow:hidden;}
 .incScreen{width:100%;height:100%;}
 
+.f24{font-size:24px;}
 .f20{font-size:20px;}
 .f16{font-size:16px;}
 .f14{font-size:14px;}
@@ -82,62 +84,3 @@ section,figure,figcaption{display:block;}
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
-
-.iconicon-colorwarning {
-    color: #FFA31F;
-}
-
-.nowrap {
-    white-space: nowrap;
-}
-
-.font_center {
-    text-align: center;
-}
-.line_2n {
-    line-height: 2;
-}
-.font_12 {
-    font-size: 12px;
-    color: #212121;
-}
-.font_14 {
-    font-size: 14px;
-    color: #212121;
-}
-.font_48 {
-    font-size: 48px;
-    color: #212121;
-}
-.font_30 {
-    font-size: 30px;
-    color: #212121;
-}
-.font_36 {
-    font-size: 36px;
-    color: #212121;
-}
-.font_24 {
-    font-size: 36px;
-    color: #212121;
-}
-.font_60 {
-    font-size: 60px;
-    color: #212121;
-}
-.color_1 {
-    color: #ffffff;
-}
-.color_16 {
-    color: #6E6E6E;
-}
-
-.hoverBorderBd:hover {
-    box-sizing: border-box;
-    border: 1px solid #4263ff;
-}
-
-.borderBd {
-    box-sizing: border-box;
-    border: 1px solid #4263ff;
-} 
